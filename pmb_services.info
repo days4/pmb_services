@@ -1,0 +1,6 @@
+name = Prediction Market Services
+description = "Services 3.x integration for Prediction Market."
+package = "Prediction markets"
+core = 7.x
+
+dependencies[] = services
