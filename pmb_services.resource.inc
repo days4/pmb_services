@@ -5,14 +5,16 @@
  */
 
 function _pmb_services_resource_definition() {
-  $resources['og'] = array();
-  // [GET] {endpoint}/og/{gid}
+  $resources['pmb_services'] = array();
+ //method post
   $resources['pmb_services']['actions']['pmb_bet_add'] = array(
     'help' => 'Places bet on selected outcome',
+   
     'callback' => '_pmb_services_resource_bet_add',
     'file' => array('type' => 'inc', 'module' => 'pmb_services', 'name' => 'pmb_services.resource'),
-    'access callback' => 'user_access',
-    'access arguments' => array('administer group'),
+    //'access callback' => 'user_access',
+    'access callback' => 'pmb_permission',
+    'access arguments' => array('Place a bet'),
     'access arguments append' => FALSE,
     'args' => array(
       array(
@@ -45,8 +47,7 @@ function _pmb_services_resource_definition() {
       ),
     ),
   );
- 
-
+  
   return $resources;
 }
 
