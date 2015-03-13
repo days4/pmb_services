@@ -49,17 +49,16 @@ function _pmb_services_resource_definition() {
 
   return $resources;
 }
+
 function _pmb_services_resource_bet_add($node,$user,$pmb_bet_amount,$pmb_bet_outcome)
 {
 $u=user_load($user,$reset = TRUE);
-  
-dpm($u);
 $n=node_load($node, $vid = NULL, $reset = TRUE);
-
-dpm($n);
-drupal_set_message($node);
-drupal_set_message($user);
-drupal_set_message($pmb_bet_amount);
-drupal_set_message($pmb_bet_outcome);
-return pmb_bet_add($n, $u, $pmb_bet_amount, $pmb_bet_outcome) ;
+$current_points=userpoints_get_current_points($user, $tid = NULL);
+if($current_points>$pmb_bet_amount){
+return pmb_bet_add($n, $u, $pmb_bet_amount, $pmb_bet_outcome) ;}
+else
+{
+  return 'Not Enough Points';
+}
 }
